@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/sliceking/listy/models"
@@ -40,16 +42,17 @@ func main() {
 
 	fmt.Println(card)
 
-	// server := gin.Default()
-	// server.LoadHTMLGlob("views/*")
+	server := gin.Default()
+	server.LoadHTMLGlob("views/*")
+	server.Static("/assets", "./assets")
 
-	// // controllers can return funcs that are gin.HandlerFuncs: func(ctx *gin.Context) {}
-	// server.GET("/index", func(ctx *gin.Context) {
-	// 	ctx.HTML(http.StatusOK, "index.html", gin.H{
-	// 		"message": "ok!",
-	// 		"ok":      "no",
-	// 	})
-	// })
+	// controllers can return funcs that are gin.HandlerFuncs: func(ctx *gin.Context) {}
+	server.GET("/index", func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "index.html", gin.H{
+			"message": "ok!",
+			"ok":      "no",
+		})
+	})
 
-	// server.Run(":8080")
+	server.Run(":8080")
 }
