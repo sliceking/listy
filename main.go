@@ -2,9 +2,7 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 
-	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"github.com/sliceking/listy/models"
@@ -17,18 +15,39 @@ func main() {
 	}
 	defer db.Close()
 
-	db.AutoMigrate(&models.Card{})
+	db.AutoMigrate(&models.Card{}, &models.Task{})
 
-	server := gin.Default()
-	server.LoadHTMLGlob("views/*")
+	newCard := models.Card{
+		Title:       "first",
+		Description: "i am the",
+		Tasks: []models.Task{
+			{
+				Description: "do it",
+			},
+			{
+				Description: "what eva",
+			},
+		},
+	}
 
-	// controllers can return funcs that are gin.HandlerFuncs: func(ctx *gin.Context) {}
-	server.GET("/index", func(ctx *gin.Context) {
-		ctx.HTML(http.StatusOK, "index.html", gin.H{
-			"message": "ok!",
-			"ok":      "no",
-		})
-	})
+	db.Create(&newCard)
 
-	server.Run(":8080")
+	var card models.Card
+	var tasks models.Task
+	db.Model(&card).Related(&tasks)
+
+	fmt.Println(tasks)
+
+	// server := gin.Default()
+	// server.LoadHTMLGlob("views/*")
+
+	// // controllers can return funcs that are gin.HandlerFuncs: func(ctx *gin.Context) {}
+	// server.GET("/index", func(ctx *gin.Context) {
+	// 	ctx.HTML(http.StatusOK, "index.html", gin.H{
+	// 		"message": "ok!",
+	// 		"ok":      "no",
+	// 	})
+	// })
+
+	// server.Run(":8080")
 }
