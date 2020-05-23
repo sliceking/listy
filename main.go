@@ -15,6 +15,8 @@ func main() {
 	}
 	defer db.Close()
 
+	db.DropTableIfExists(&models.Card{}, &models.Task{})
+
 	db.AutoMigrate(&models.Card{}, &models.Task{})
 
 	newCard := models.Card{
@@ -33,10 +35,10 @@ func main() {
 	db.Create(&newCard)
 
 	var card models.Card
-	var tasks models.Task
-	db.Model(&card).Related(&tasks)
 
-	fmt.Println(tasks)
+	db.Preload("Tasks").First(&card)
+
+	fmt.Println(card)
 
 	// server := gin.Default()
 	// server.LoadHTMLGlob("views/*")
