@@ -6,6 +6,8 @@ Its using gin and possibly swagger after the fact. Right now I'm just trying to 
 
 todo:
 
+[x] get cards to render
+[] gets tasks to render
 [] add columns table
 [] add column assoc to task
 [] add routing for a show view for a task - i think unpoly's layers can be used for this
