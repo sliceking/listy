@@ -1,1 +1,5 @@
- dragula([document.querySelector('#left'), document.querySelector('#right')]);
+ dragula([
+    document.querySelector('#backlog'), 
+    document.querySelector('#working'), 
+    document.querySelector('#done')]
+);

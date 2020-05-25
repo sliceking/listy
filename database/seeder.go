@@ -10,9 +10,23 @@ func Seeder(db *gorm.DB) {
 	db.DropTableIfExists(&models.Card{}, &models.Task{})
 	db.AutoMigrate(&models.Card{}, &models.Task{})
 
-	newCard := models.Card{
-		Title:       "I am the First",
-		Description: "i am the",
+	blone := models.Card{
+		Title:       "I am the backlog First",
+		Description: "Do some really good stuff and then make sure it works",
+		Category:    "backlog",
+		Tasks: []models.Task{
+			{
+				Description: "do it",
+			},
+			{
+				Description: "what eva",
+			},
+		},
+	}
+	bltwo := models.Card{
+		Title:       "I am the backlog second",
+		Description: "Do some really good stuff and then make sure it works",
+		Category:    "backlog",
 		Tasks: []models.Task{
 			{
 				Description: "do it",
@@ -23,9 +37,23 @@ func Seeder(db *gorm.DB) {
 		},
 	}
 
-	secondNewCard := models.Card{
-		Title:       "I am the second",
-		Description: "i am the",
+	wone := models.Card{
+		Title:       "I am the working first",
+		Description: "Do some mediocre things and then make it maybe work",
+		Category:    "working",
+		Tasks: []models.Task{
+			{
+				Description: "sumthangt",
+			},
+			{
+				Description: "bloppblopb",
+			},
+		},
+	}
+	wtwo := models.Card{
+		Title:       "I am the working second",
+		Description: "Do some mediocre things and then make it maybe work",
+		Category:    "working",
 		Tasks: []models.Task{
 			{
 				Description: "sumthangt",
@@ -36,6 +64,37 @@ func Seeder(db *gorm.DB) {
 		},
 	}
 
-	db.Create(&newCard)
-	db.Create(&secondNewCard)
+	done := models.Card{
+		Title:       "I am the done third",
+		Description: "Do some bad things and then dont make it maybe work",
+		Category:    "done",
+		Tasks: []models.Task{
+			{
+				Description: "sumthangt",
+			},
+			{
+				Description: "bloppblopb",
+			},
+		},
+	}
+	dtwo := models.Card{
+		Title:       "I am the done third",
+		Description: "Do some bad things and then dont make it maybe work",
+		Category:    "done",
+		Tasks: []models.Task{
+			{
+				Description: "sumthangt",
+			},
+			{
+				Description: "bloppblopb",
+			},
+		},
+	}
+
+	db.Create(&done)
+	db.Create(&dtwo)
+	db.Create(&wone)
+	db.Create(&wtwo)
+	db.Create(&blone)
+	db.Create(&bltwo)
 }

@@ -18,13 +18,20 @@ type CardsController struct {
 }
 
 func (c *CardsController) Index() func(ctx *gin.Context) {
-	var cards []models.Card
-	c.DB.Find(&cards)
-	fmt.Println(cards)
+	var backlog []models.Card
+	var working []models.Card
+	var done []models.Card
+	c.DB.Where("category = ?", "backlog").Find(&backlog)
+	c.DB.Where("category = ?", "working").Find(&working)
+	c.DB.Where("category = ?", "done").Find(&done)
+
+	fmt.Println(backlog)
 
 	return func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", gin.H{
-			"Cards": cards,
+			"backlog": backlog,
+			"working": working,
+			"done":    done,
 		})
 	}
 }

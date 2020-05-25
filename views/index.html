@@ -18,21 +18,22 @@
 
     <div class="container">
         <div class="row">
-            <div id="left" class="col-6">
-               <div>i am ssome content</div>
-               <div>i am sasdfsome content</div>
-               <div>i am asdfasdfasdfas content</div>
+            <div id="backlog" class="col-4">
+                {{range .backlog}}
+                    <div>{{.Title}}</div>
+                {{end}}
             </div>
-            <div id="right" class="col-6">
-                <div>i am ssome content</div>
-                <div>i am sasdfsome content</div>
-                <div>i am asdfasdafsfasdf content</div>
+            <div id="working" class="col-4">
+                {{range .working}}
+                    <div>{{.Title}}</div>
+                {{end}}
+            </div>
+            <div id="done" class="col-4">
+                {{range .done}}
+                    <div>{{.Title}}</div>
+                {{end}}
             </div>
         </div>
-
-        {{range .Cards}}
-            <p>{{.Title}}</p>
-        {{end}}
     </div>
 
 
