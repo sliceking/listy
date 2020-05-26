@@ -3,3 +3,9 @@
     document.querySelector('#working'), 
     document.querySelector('#done')]
 );
+
+$('#backlog, #working, #done').on('click', detailView);
+
+function detailView(event) {
+    console.log('clicked', e);
+}

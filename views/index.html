@@ -14,23 +14,40 @@
 
 </head>
 <body>
-    <h1>the page</h1>
-
     <div class="container">
+        <h1>Listy</h1>
         <div class="row">
             <div id="backlog" class="col-4">
+                <h2>Backlog</h2>
                 {{range .backlog}}
-                    <div>{{.Title}}</div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">{{.Title}}</h5>
+                        <p class="card-text">{{.Description}}</p>
+                        </div>
+                    </div>
                 {{end}}
             </div>
             <div id="working" class="col-4">
+                <h2>In Progress</h2>
                 {{range .working}}
-                    <div>{{.Title}}</div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">{{.Title}}</h5>
+                        <p class="card-text">{{.Description}}</p>
+                        </div>
+                    </div>
                 {{end}}
             </div>
             <div id="done" class="col-4">
+                <h2>Done</h2>
                 {{range .done}}
-                    <div>{{.Title}}</div>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                        <h5 class="card-title">{{.Title}}</h5>
+                        <p class="card-text">{{.Description}}</p>
+                        </div>
+                    </div>
                 {{end}}
             </div>
         </div>
