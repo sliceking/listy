@@ -27,7 +27,8 @@ func main() {
 	server.Static("/assets", "./assets")
 
 	// controllers can return funcs that are gin.HandlerFuncs: func(ctx *gin.Context) {}
-	server.GET("/index", cardController.Index())
+	server.GET("/", cardController.Index())
+	server.GET("/card/:id", cardController.Show())
 
 	server.Run(":8080")
 }

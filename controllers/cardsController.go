@@ -35,3 +35,16 @@ func (c *CardsController) Index() func(ctx *gin.Context) {
 		})
 	}
 }
+
+func (c *CardsController) Show() func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+		var card models.Card
+		id := ctx.Param("id")
+
+		c.DB.Where("ID = ?", id).Find(&card)
+
+		ctx.HTML(http.StatusOK, "show.html", gin.H{
+			"card": card,
+		})
+	}
+}
