@@ -7,5 +7,5 @@
 $('#backlog, #working, #done').on('click', detailView);
 
 function detailView(event) {
-    console.log('clicked', e);
+    console.log('clicked', event);
 }
