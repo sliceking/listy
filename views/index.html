@@ -20,34 +20,40 @@
             <div id="backlog" class="col-4">
                 <h2>Backlog</h2>
                 {{range .backlog}}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                        <h5 class="card-title">{{.Title}}</h5>
-                        <p class="card-text">{{.Description}}</p>
+                    <a href="card/{{.ID}}" up-modal=".container">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{.Title}}</h5>
+                            <p class="card-text">{{.Description}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 {{end}}
             </div>
             <div id="working" class="col-4">
                 <h2>In Progress</h2>
                 {{range .working}}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                        <h5 class="card-title">{{.Title}}</h5>
-                        <p class="card-text">{{.Description}}</p>
+                    <a href="card/{{.ID}}" up-modal=".container">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{.Title}}</h5>
+                            <p class="card-text">{{.Description}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 {{end}}
             </div>
             <div id="done" class="col-4">
                 <h2>Done</h2>
                 {{range .done}}
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                        <h5 class="card-title">{{.Title}}</h5>
-                        <p class="card-text">{{.Description}}</p>
+                    <a href="card/{{.ID}}" up-modal=".container">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{.Title}}</h5>
+                            <p class="card-text">{{.Description}}</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 {{end}}
             </div>
         </div>
