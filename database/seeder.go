@@ -9,8 +9,9 @@ func Seeder(db *gorm.DB) {
 	db.LogMode(true)
 	db.DropTableIfExists(&models.Card{}, &models.Task{})
 	db.AutoMigrate(&models.Card{}, &models.Task{})
+	var seeds []models.Card
 
-	blone := models.Card{
+	seeds = append(seeds, models.Card{
 		Title:       "I am the backlog First",
 		Description: "Do some really good stuff and then make sure it works",
 		Category:    "backlog",
@@ -22,8 +23,8 @@ func Seeder(db *gorm.DB) {
 				Description: "what eva",
 			},
 		},
-	}
-	bltwo := models.Card{
+	})
+	seeds = append(seeds, models.Card{
 		Title:       "I am the backlog second",
 		Description: "Do some really good stuff and then make sure it works",
 		Category:    "backlog",
@@ -35,9 +36,9 @@ func Seeder(db *gorm.DB) {
 				Description: "what eva",
 			},
 		},
-	}
+	})
 
-	wone := models.Card{
+	seeds = append(seeds, models.Card{
 		Title:       "I am the working first",
 		Description: "Do some mediocre things and then make it maybe work",
 		Category:    "working",
@@ -49,8 +50,8 @@ func Seeder(db *gorm.DB) {
 				Description: "bloppblopb",
 			},
 		},
-	}
-	wtwo := models.Card{
+	})
+	seeds = append(seeds, models.Card{
 		Title:       "I am the working second",
 		Description: "Do some mediocre things and then make it maybe work",
 		Category:    "working",
@@ -62,9 +63,9 @@ func Seeder(db *gorm.DB) {
 				Description: "bloppblopb",
 			},
 		},
-	}
+	})
 
-	done := models.Card{
+	seeds = append(seeds, models.Card{
 		Title:       "I am the done third",
 		Description: "Do some bad things and then dont make it maybe work",
 		Category:    "done",
@@ -76,8 +77,8 @@ func Seeder(db *gorm.DB) {
 				Description: "bloppblopb",
 			},
 		},
-	}
-	dtwo := models.Card{
+	})
+	seeds = append(seeds, models.Card{
 		Title:       "I am the done third",
 		Description: "Do some bad things and then dont make it maybe work",
 		Category:    "done",
@@ -89,12 +90,9 @@ func Seeder(db *gorm.DB) {
 				Description: "bloppblopb",
 			},
 		},
-	}
+	})
 
-	db.Create(&done)
-	db.Create(&dtwo)
-	db.Create(&wone)
-	db.Create(&wtwo)
-	db.Create(&blone)
-	db.Create(&bltwo)
+	for _, seedCard := range seeds {
+		db.Create(&seedCard)
+	}
 }

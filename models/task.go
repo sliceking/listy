@@ -2,11 +2,9 @@ package models
 
 import "github.com/jinzhu/gorm"
 
-type Card struct {
+type Task struct {
 	gorm.Model
-	Title       string `gorm:"not null"`
+	CardID      uint
 	Description string `gorm:"not null"`
-	Category    string `gorm:"not null"`
-	Tasks       []Task
 	Completed   bool
 }

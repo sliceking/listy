@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -21,11 +20,10 @@ func (c *CardsController) Index() func(ctx *gin.Context) {
 	var backlog []models.Card
 	var working []models.Card
 	var done []models.Card
+
 	c.DB.Where("category = ?", "backlog").Find(&backlog)
 	c.DB.Where("category = ?", "working").Find(&working)
 	c.DB.Where("category = ?", "done").Find(&done)
-
-	fmt.Println(backlog)
 
 	return func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "index.html", gin.H{
