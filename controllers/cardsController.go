@@ -41,7 +41,7 @@ func (c *CardsController) Show() func(ctx *gin.Context) {
 		var card models.Card
 		id := ctx.Param("id")
 
-		c.DB.Where("ID = ?", id).Find(&card)
+		c.DB.Where("ID = ?", id).Preload("Tasks").Find(&card)
 
 		ctx.HTML(http.StatusOK, "show.html", gin.H{
 			"card": card,

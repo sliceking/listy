@@ -11,6 +11,6 @@ todo:
 [x] click event attached to cards
 [x] on click it opens detail view
 [] make detail view look pretty
-[] gets tasks to render
+[x] gets tasks to render
 [x] add routing for a show view for a task - i think unpoly's layers can be used for this
 [x] make a seed to create some tasks in each column and get it to render properly

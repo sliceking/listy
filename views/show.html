@@ -5,6 +5,13 @@
                 <div class="card-body">
                 <h5 class="card-title">{{.card.Title}}</h5>
                 <p class="card-text">{{.card.Description}}</p>
+                <hr>
+                <h5>Tasks</h5>
+                <ul>
+                {{range .card.Tasks}}
+                    <li>{{.Description}}</li>
+                {{end}}
+                </ul>
                 </div>
             </div>
         </div>
