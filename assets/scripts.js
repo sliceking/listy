@@ -6,9 +6,23 @@
     );
 
     dragContainers.on('drop', function(el, target, source){
-        console.log('el', el);
+        console.log('el', el.dataset.id);
+        console.log(target.id);
 
         if (target !== source) {
+            const data = {category: target.id};
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),              
+            };
+
+            const request = new Request(`/cards/${el.dataset.id}`, options)
+            fetch(request)
+                .then(response => console.log(response));
+
             console.log('different');
         } else {
             console.log('same');

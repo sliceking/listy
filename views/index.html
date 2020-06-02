@@ -20,7 +20,7 @@
             <div id="backlog" class="col-4">
                 <h2>Backlog</h2>
                 {{range .backlog}}
-                    <a href="card/{{.ID}}" up-modal=".container">
+                    <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">{{.Title}}</h5>
@@ -33,7 +33,7 @@
             <div id="working" class="col-4">
                 <h2>In Progress</h2>
                 {{range .working}}
-                    <a href="card/{{.ID}}" up-modal=".container">
+                    <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">{{.Title}}</h5>
@@ -46,7 +46,7 @@
             <div id="done" class="col-4">
                 <h2>Done</h2>
                 {{range .done}}
-                    <a href="card/{{.ID}}" up-modal=".container">
+                    <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">{{.Title}}</h5>

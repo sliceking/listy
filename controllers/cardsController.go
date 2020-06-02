@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +18,7 @@ type CardsController struct {
 }
 
 // Index will display all cards
-// GET /card
+// GET /cards
 func (c *CardsController) Index() func(ctx *gin.Context) {
 	var backlog []models.Card
 	var working []models.Card
@@ -37,7 +38,7 @@ func (c *CardsController) Index() func(ctx *gin.Context) {
 }
 
 // Show will display an individual card
-// GET /card/:id
+// GET /cards/:id
 func (c *CardsController) Show() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
 		var card models.Card
@@ -51,23 +52,43 @@ func (c *CardsController) Show() func(ctx *gin.Context) {
 	}
 }
 
-// Update will update a card record
-// PUT /card/:id
+// // Update will update a card record
+// // PUT /cards/:id
 func (c *CardsController) Update() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
 		var card models.Card
+		var json struct {
+			Value string `json:"category" binding:"required"`
+		}
 		id := ctx.Param("id")
+		ctx.Bind(&json)
+		fmt.Println("please work")
+		fmt.Println(json)
+
+		c.DB.Model(&card).Where("id = ?", id).Update("category", json.Value)
+
+		ctx.JSON(http.StatusNoContent, nil)
 
 		// DO UPDATE HERE
 	}
 }
 
-// Create will make a new card record
-// POST /card
-func (c *CardsController) Create() func(ctx *gin.Context) {
-	return func(ctx *gin.Context) {
-		var card models.Card
+// // Create will make a new card record
+// // POST /cards
+// func (c *CardsController) Create() func(ctx *gin.Context) {
+// 	return func(ctx *gin.Context) {
+// 		var card models.Card
 
-		// DO CREATE HERE
-	}
-}
+// 		// DO CREATE HERE
+// 	}
+// }
+
+// // Create will make a new card record
+// // get /cards/new
+// func (c *CardsController) Create() func(ctx *gin.Context) {
+// 	return func(ctx *gin.Context) {
+// 		var card models.Card
+
+// 		// DO CREATE HERE
+// 	}
+// }

@@ -19,3 +19,4 @@ todo:
 [] add a complete task button/form
 [] make dragging to different columns update the column in the model
 [] add a route to update the card data
+[] add data attribute to card
