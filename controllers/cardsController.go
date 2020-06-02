@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -20,15 +19,15 @@ type CardsController struct {
 // Index will display all cards
 // GET /cards
 func (c *CardsController) Index() func(ctx *gin.Context) {
-	var backlog []models.Card
-	var working []models.Card
-	var done []models.Card
-
-	c.DB.Where("category = ?", "backlog").Find(&backlog)
-	c.DB.Where("category = ?", "working").Find(&working)
-	c.DB.Where("category = ?", "done").Find(&done)
-
 	return func(ctx *gin.Context) {
+		var backlog []models.Card
+		var working []models.Card
+		var done []models.Card
+
+		c.DB.Where("category = ?", "backlog").Find(&backlog)
+		c.DB.Where("category = ?", "working").Find(&working)
+		c.DB.Where("category = ?", "done").Find(&done)
+
 		ctx.HTML(http.StatusOK, "index.html", gin.H{
 			"backlog": backlog,
 			"working": working,
@@ -60,10 +59,8 @@ func (c *CardsController) Update() func(ctx *gin.Context) {
 		var json struct {
 			Value string `json:"category" binding:"required"`
 		}
-		id := ctx.Param("id")
 		ctx.Bind(&json)
-		fmt.Println("please work")
-		fmt.Println(json)
+		id := ctx.Param("id")
 
 		c.DB.Model(&card).Where("id = ?", id).Update("category", json.Value)
 
