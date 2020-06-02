@@ -10,7 +10,12 @@ todo:
 [x] detail view route
 [x] click event attached to cards
 [x] on click it opens detail view
-[] make detail view look pretty
 [x] gets tasks to render
 [x] add routing for a show view for a task - i think unpoly's layers can be used for this
 [x] make a seed to create some tasks in each column and get it to render properly
+[] make detail view look pretty
+[] add a create card button/form
+[] add a create task button/form
+[] add a complete task button/form
+[] make dragging to different columns update the column in the model
+[] add a route to update the card data

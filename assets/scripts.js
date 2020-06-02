@@ -1,13 +1,23 @@
- function drag() {
-    dragula([
+ function setupDragging() {
+    var dragContainers = dragula([
         $('#backlog')[0], 
         $('#working')[0], 
         $('#done')[0]]
     );
+
+    dragContainers.on('drop', function(el, target, source){
+        console.log('el', el);
+
+        if (target !== source) {
+            console.log('different');
+        } else {
+            console.log('same');
+        }
+    })
  }
  
  $(document).ready(function(){
-    drag();
+    setupDragging();
  })
 
  document.addEventListener("up:modal:close", function(event) {
@@ -18,5 +28,5 @@
 })
 
 document.addEventListener("up:modal:closed", function(event) {
-    drag();
+    setupDragging();
 })

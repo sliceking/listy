@@ -16,6 +16,8 @@ type CardsController struct {
 	DB *gorm.DB
 }
 
+// Index will display all cards
+// GET /card
 func (c *CardsController) Index() func(ctx *gin.Context) {
 	var backlog []models.Card
 	var working []models.Card
@@ -34,6 +36,8 @@ func (c *CardsController) Index() func(ctx *gin.Context) {
 	}
 }
 
+// Show will display an individual card
+// GET /card/:id
 func (c *CardsController) Show() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
 		var card models.Card
@@ -44,5 +48,26 @@ func (c *CardsController) Show() func(ctx *gin.Context) {
 		ctx.HTML(http.StatusOK, "show.html", gin.H{
 			"card": card,
 		})
+	}
+}
+
+// Update will update a card record
+// PUT /card/:id
+func (c *CardsController) Update() func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+		var card models.Card
+		id := ctx.Param("id")
+
+		// DO UPDATE HERE
+	}
+}
+
+// Create will make a new card record
+// POST /card
+func (c *CardsController) Create() func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+		var card models.Card
+
+		// DO CREATE HERE
 	}
 }
