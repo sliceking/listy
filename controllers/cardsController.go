@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -51,8 +52,8 @@ func (c *CardsController) Show() func(ctx *gin.Context) {
 	}
 }
 
-// // Update will update a card record
-// // PUT /cards/:id
+// Update will update a card record
+// PUT /cards/:id
 func (c *CardsController) Update() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
 		var card models.Card
@@ -68,22 +69,20 @@ func (c *CardsController) Update() func(ctx *gin.Context) {
 	}
 }
 
-// // Create will make a new card record
-// // POST /cards
-// func (c *CardsController) Create() func(ctx *gin.Context) {
-// 	return func(ctx *gin.Context) {
-// 		var card models.Card
+// Create will make a new card record
+// POST /cards
+func (c *CardsController) Create() func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+		// var card models.Card
+		fmt.Println("POSTED!")
+		ctx.Redirect(http.StatusFound, "/")
+	}
+}
 
-// 		// DO CREATE HERE
-// 	}
-// }
-
-// // Create will make a new card record
-// // get /cards/new
-// func (c *CardsController) Create() func(ctx *gin.Context) {
-// 	return func(ctx *gin.Context) {
-// 		var card models.Card
-
-// 		// DO CREATE HERE
-// 	}
-// }
+// New will make a new card record
+// get /new
+func (c *CardsController) New() func(ctx *gin.Context) {
+	return func(ctx *gin.Context) {
+		ctx.HTML(http.StatusOK, "new.html", gin.H{})
+	}
+}

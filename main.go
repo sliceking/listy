@@ -28,8 +28,10 @@ func main() {
 
 	// controllers can return funcs that are gin.HandlerFuncs: func(ctx *gin.Context) {}
 	server.GET("/", cardController.Index())
+	server.GET("/new", cardController.New())
 	server.GET("/cards/:id", cardController.Show())
 	server.PUT("/cards/:id", cardController.Update())
+	server.POST("/cards", cardController.Create())
 
 	server.Run(":8080")
 }

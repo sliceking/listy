@@ -19,6 +19,9 @@
         <div class="row">
             <div id="backlog" class="col-4">
                 <h2>Backlog</h2>
+                <a href="/new" up-modal=".container">
+                    <div class="btn btn-primary m-2">New Card</div>
+                </a>
                 {{range .backlog}}
                     <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
@@ -30,8 +33,12 @@
                     </a>
                 {{end}}
             </div>
+
             <div id="working" class="col-4">
                 <h2>In Progress</h2>
+                <a href="/new" up-modal=".container" >
+                    <div class="btn btn-primary m-2">New Card</div>
+                </a>
                 {{range .working}}
                     <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
@@ -43,8 +50,12 @@
                     </a>
                 {{end}}
             </div>
+            
             <div id="done" class="col-4">
                 <h2>Done</h2>
+                <a href="/new" up-modal=".container" >
+                    <div class="btn btn-primary m-2">New Card</div>
+                </a>
                 {{range .done}}
                     <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
@@ -58,7 +69,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="https://unpkg.com/unpoly@0.62.0/dist/unpoly.min.js" integrity="sha384-FhYCzYFdGp9JBPsEmRaQPBVM0i1LUwBuiQ4jHUKZL9WhuiSGVdAfa6vw3L8bNfpU" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://unpkg.com/unpoly@0.62.0/dist/unpoly.min.css" integrity="sha384-Au6LjS9fxDpwn3+26YmukmOumZUmryd8ONenkVIoH4eEPH1tACqLsVfqz9tBrvQy" crossorigin="anonymous">
