@@ -65,8 +65,6 @@ func (c *CardsController) Update() func(ctx *gin.Context) {
 		c.DB.Model(&card).Where("id = ?", id).Update("category", json.Value)
 
 		ctx.JSON(http.StatusNoContent, nil)
-
-		// DO UPDATE HERE
 	}
 }
 

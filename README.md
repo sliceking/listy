@@ -13,10 +13,10 @@ todo:
 [x] gets tasks to render
 [x] add routing for a show view for a task - i think unpoly's layers can be used for this
 [x] make a seed to create some tasks in each column and get it to render properly
+[x] make dragging to different columns update the column in the model
+[x] add a route to update the card data
+[x] add data attribute to card
 [] make detail view look pretty
 [] add a create card button/form
 [] add a create task button/form
 [] add a complete task button/form
-[] make dragging to different columns update the column in the model
-[] add a route to update the card data
-[] add data attribute to card
