@@ -16,7 +16,9 @@ todo:
 [x] make dragging to different columns update the column in the model
 [x] add a route to update the card data
 [x] add data attribute to card
+[x] add category to a new form
 [] make detail view look pretty
 [] add a create card button/form
 [] add a create task button/form
 [] add a complete task button/form
+[] make headings and new card buttons not draggable

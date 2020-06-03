@@ -79,10 +79,15 @@ func (c *CardsController) Create() func(ctx *gin.Context) {
 	}
 }
 
-// New will make a new card record
+// New will show a new card form
 // get /new
 func (c *CardsController) New() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
-		ctx.HTML(http.StatusOK, "new.html", gin.H{})
+		category := ctx.Query("category")
+		fmt.Println(category)
+
+		ctx.HTML(http.StatusOK, "new.html", gin.H{
+			"category": category,
+		})
 	}
 }
