@@ -4,9 +4,9 @@ import "github.com/jinzhu/gorm"
 
 type Card struct {
 	gorm.Model
-	Title       string `gorm:"not null"`
-	Description string `gorm:"not null"`
-	Category    string `gorm:"not null"`
+	Title       string `gorm:"not null" form:"title"`
+	Description string `gorm:"not null" form:"description"`
+	Category    string `gorm:"not null" form:"category"`
 	Tasks       []Task
 	Completed   bool
 }

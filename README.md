@@ -17,8 +17,10 @@ todo:
 [x] add a route to update the card data
 [x] add data attribute to card
 [x] add category to a new form
-[] make detail view look pretty
-[] add a create card button/form
+[x] add a create card button/form
+[x] cards save
 [] add a create task button/form
+[] tasks save
 [] add a complete task button/form
 [] make headings and new card buttons not draggable
+[] make detail view look pretty

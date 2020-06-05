@@ -73,8 +73,10 @@ func (c *CardsController) Update() func(ctx *gin.Context) {
 // POST /cards
 func (c *CardsController) Create() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
-		// var card models.Card
-		fmt.Println("POSTED!")
+		var card models.Card
+		ctx.Bind(&card)
+		fmt.Println(card)
+		c.DB.Create(&card)
 		ctx.Redirect(http.StatusFound, "/")
 	}
 }
