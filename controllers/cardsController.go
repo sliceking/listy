@@ -41,13 +41,24 @@ func (c *CardsController) Index() func(ctx *gin.Context) {
 // GET /cards/:id
 func (c *CardsController) Show() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
+		var backlog []models.Card
+		var working []models.Card
+		var done []models.Card
+
+		c.DB.Where("category = ?", "backlog").Find(&backlog)
+		c.DB.Where("category = ?", "working").Find(&working)
+		c.DB.Where("category = ?", "done").Find(&done)
+
 		var card models.Card
 		id := ctx.Param("id")
 
 		c.DB.Where("ID = ?", id).Preload("Tasks").Find(&card)
 
 		ctx.HTML(http.StatusOK, "show.html", gin.H{
-			"card": card,
+			"card":    card,
+			"backlog": backlog,
+			"working": working,
+			"done":    done,
 		})
 	}
 }
@@ -85,11 +96,22 @@ func (c *CardsController) Create() func(ctx *gin.Context) {
 // get /new
 func (c *CardsController) New() func(ctx *gin.Context) {
 	return func(ctx *gin.Context) {
+		var backlog []models.Card
+		var working []models.Card
+		var done []models.Card
+
+		c.DB.Where("category = ?", "backlog").Find(&backlog)
+		c.DB.Where("category = ?", "working").Find(&working)
+		c.DB.Where("category = ?", "done").Find(&done)
+
 		category := ctx.Query("category")
 		fmt.Println(category)
 
 		ctx.HTML(http.StatusOK, "new.html", gin.H{
 			"category": category,
+			"backlog":  backlog,
+			"working":  working,
+			"done":     done,
 		})
 	}
 }

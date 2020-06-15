@@ -1,21 +1,116 @@
-<div class="container">
-    <div class="row">
-        <div class="col">
-            <h2>New Card</h2>
-            <form method="POST" action="/cards">
-                <div class="form-group">
-                    <label>Title</label>
-                    <input name="title" class="form-control" type="text">
-                </div>
-                <div class="form-group">
-                    <label>Description</label>
-                    <input name="description" class="form-control" type="text">
-                </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
-                <input name="category" class="form-control" type="hidden" value="{{.category}}">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+</head>
+<body>
+    <div class="container">
+        <h1>Listy</h1>
+        <div class="row">
+            <div id="backlog" class="col-4">
+                <h2>Backlog</h2>
+                <a href="/new?category=backlog" up-modal=".new-modal">
+                    <div class="btn btn-primary m-2">New Card</div>
+                </a>
+                {{range .backlog}}
+                    <a href="cards/{{.ID}}" up-modal=".show-modal" data-id="{{.ID}}">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{.Title}}</h5>
+                            <p class="card-text">{{.Description}}</p>
+                            </div>
+                        </div>
+                    </a>
+                {{end}}
+            </div>
+
+            <div id="working" class="col-4">
+                <h2>In Progress</h2>
+                <a href="/new?category=working" up-modal=".new-modal" >
+                    <div class="btn btn-primary m-2">New Card</div>
+                </a>
+                {{range .working}}
+                    <a href="cards/{{.ID}}" up-modal=".show-modal" data-id="{{.ID}}">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{.Title}}</h5>
+                            <p class="card-text">{{.Description}}</p>
+                            </div>
+                        </div>
+                    </a>
+                {{end}}
+            </div>
+            
+            <div id="done" class="col-4">
+                <h2>Done</h2>
+                <a href="/new?category=done" up-modal=".new-modal" >
+                    <div class="btn btn-primary m-2">New Card</div>
+                </a>
+                {{range .done}}
+                    <a href="cards/{{.ID}}" up-modal=".show-modal" data-id="{{.ID}}">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                            <h5 class="card-title">{{.Title}}</h5>
+                            <p class="card-text">{{.Description}}</p>
+                            </div>
+                        </div>
+                    </a>
+                {{end}}
+            </div>
         </div>
     </div>
-</div>
+
+    <div class="up-modal" aria-modal="true" up-flavor="default" style="">
+    <div class="up-modal-backdrop" style="opacity: 1;"></div>
+        <div class="up-modal-viewport" style="opacity: 1;">
+            <div class="up-modal-dialog modal-dialog">
+                <div class="up-modal-content modal-content">
+                    <div class="new-modal container">
+                        <div class="row">
+                            <div class="col">
+                                <h2>New Card</h2>
+                                <form method="POST" action="/cards">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input name="title" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input name="description" class="form-control" type="text">
+                                    </div>
+
+                                    <input name="category" class="form-control" type="hidden" value="{{.category}}">
+
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/unpoly@0.62.0/dist/unpoly.min.js" integrity="sha384-FhYCzYFdGp9JBPsEmRaQPBVM0i1LUwBuiQ4jHUKZL9WhuiSGVdAfa6vw3L8bNfpU" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/unpoly@0.62.0/dist/unpoly.min.css" integrity="sha384-Au6LjS9fxDpwn3+26YmukmOumZUmryd8ONenkVIoH4eEPH1tACqLsVfqz9tBrvQy" crossorigin="anonymous">
+    <script src="https://unpkg.com/unpoly@0.62.0/dist/unpoly-bootstrap3.min.js" integrity="sha384-lMc46x3hWx64BAq3vrNJ8iw+OxCsmd7wjW0s6R5OQ1hRS7wM/j89SjW/42xU2pRN" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://unpkg.com/unpoly@0.62.0/dist/unpoly-bootstrap3.min.css" integrity="sha384-oJV80YWkwBRAQFFmBo1hi8Wrh2PkisM2RttMUv4cvHABmxpez4yrECLKvs07ayJW" crossorigin="anonymous">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.js'></script>
+
+    <link rel="stylesheet" href="/assets/style.css"/>
+    <script src="/assets/scripts.js"></script>
+</body>
+</html>
+

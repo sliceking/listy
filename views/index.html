@@ -19,11 +19,11 @@
         <div class="row">
             <div id="backlog" class="col-4">
                 <h2>Backlog</h2>
-                <a href="/new?category=backlog" up-modal=".container">
+                <a href="/new?category=backlog" up-modal=".new-modal">
                     <div class="btn btn-primary m-2">New Card</div>
                 </a>
                 {{range .backlog}}
-                    <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
+                    <a href="cards/{{.ID}}" up-modal=".show-modal" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">{{.Title}}</h5>
@@ -36,11 +36,11 @@
 
             <div id="working" class="col-4">
                 <h2>In Progress</h2>
-                <a href="/new?category=working" up-modal=".container" >
+                <a href="/new?category=working" up-modal=".new-modal" >
                     <div class="btn btn-primary m-2">New Card</div>
                 </a>
                 {{range .working}}
-                    <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
+                    <a href="cards/{{.ID}}" up-modal=".show-modal" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">{{.Title}}</h5>
@@ -53,11 +53,11 @@
             
             <div id="done" class="col-4">
                 <h2>Done</h2>
-                <a href="/new?category=done" up-modal=".container" >
+                <a href="/new?category=done" up-modal=".new-modal" >
                     <div class="btn btn-primary m-2">New Card</div>
                 </a>
                 {{range .done}}
-                    <a href="cards/{{.ID}}" up-modal=".container" data-id="{{.ID}}">
+                    <a href="cards/{{.ID}}" up-modal=".show-modal" data-id="{{.ID}}">
                         <div class="card" style="width: 18rem;">
                             <div class="card-body">
                             <h5 class="card-title">{{.Title}}</h5>
